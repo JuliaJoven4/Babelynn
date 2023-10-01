@@ -1,9 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["../panel/src/**/*.{vue,js,ts,jsx,tsx,html}", "../tienda/src/**/*.{vue,js,ts,jsx,tsx,html}"],
   theme: {
-    extend: {},
+    container: {
+
+      center: true,
+
+    },
+    extend: {
+      colors: {
+        blue: '#00b1f4',
+        ultraviolet: '#3b48fe',
+        magenta: '#fb3e79',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'),],
 }
 
