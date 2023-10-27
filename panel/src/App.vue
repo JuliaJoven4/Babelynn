@@ -1,9 +1,12 @@
 <template>
-  <div id="app" class="flex">
-    <SidebarOptions/>
-    <div class="main-content mt-10">
-      <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <HeaderMenu/>
+    <div class="main-content flex">
+      <SidebarOptions/>
+      <div class="main-content mt-10">
+        <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+        <HelloWorld msg="Welcome to Your Vue.js App"/>
+      </div>
     </div>
   </div>
 </template>
@@ -11,12 +14,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import SidebarOptions from '@/components/SidebarOptions.vue'
+import HeaderMenu from './components/HeaderMenu.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    SidebarOptions
+    SidebarOptions,
+    HeaderMenu
   }
 }
 </script>
