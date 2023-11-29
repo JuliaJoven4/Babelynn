@@ -1,46 +1,28 @@
 <template>
-  <div class="sidebar border border-solid border-gray-200 h-screen">
-    <div class="logo">
-        <img src="@/assets/logo_Babelynn.png" alt="Logo Babelynn" class="w-20 mx-auto my-10">
-    </div>
-    <div v-for="(acordeon, index) in acordeones" :key="index">
-      <div :class="`${acordeon.clase} border-b border-solid border-gray-200`">
-        <button
-          class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
-          @click="toggleAccordion(index)"
-        >
-          <span>{{ acordeon.titulo }}</span>
-          <ArrowIcon :isClosed="!acordeon.isOpen" />
-        </button>
-        <div v-if="acordeon.isOpen" class="accordion-content transition duration-300">
-          <!-- Opciones desplegables -->
-          <ul class="text-left justify-start text-base">
-            <li v-for="(option, optionIndex) in acordeon.opciones" :key="optionIndex" class="h-10 flex items-center hover:bg-gray-100">
-              <span class="pl-6">{{ option }}</span>
-            </li>
-          </ul>
+    <div :class="['sidebar', { 'sidebar-visible': isVisible }]" class="border border-solid border-gray-200">
+      <div class="logo">
+          <img src="@/assets/logo_Babelynn.png" alt="Logo Babelynn" class="w-20 mx-auto my-10">
+      </div>
+      <div v-for="(acordeon, index) in acordeones" :key="index">
+        <div :class="`${acordeon.clase} border-b border-solid border-gray-200`">
+          <button
+            class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
+            @click="toggleAccordion(index)"
+          >
+            <span>{{ acordeon.titulo }}</span>
+            <ArrowIcon :isClosed="!acordeon.isOpen" />
+          </button>
+          <div v-if="acordeon.isOpen" class="accordion-content transition duration-300">
+            <!-- Opciones desplegables -->
+            <ul class="text-left justify-start text-base">
+              <li v-for="(option, optionIndex) in acordeon.opciones" :key="optionIndex" class="h-10 flex items-center hover:bg-gray-100">
+                <span class="pl-6">{{ option }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-    <!-- <div class="sidebar border border-solid border-gray-200 h-screen">
-        <div class="logo">
-            <img src="@/assets/logo_Babelynn.png" alt="Logo Babelynn" class="w-20 mx-auto my-10">
-        </div> -->
-
-        <!-- Acordeón de pulseras y brazaletes -->
-        <!-- <div class="pulseras_acordeon border-t border-solid border-gray-200"> -->
-          <!-- Clase del botón: class="accordion-title p-4 bg-gray-100 cursor-pointer border-b border-solid border-gray-200 w-60 flex justify-between items-center" -->
-            <!-- <button
-                class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
-                @click="toggleAccordion"
-                >
-                <span>Brazaletes y pulseras</span>
-                <ArrowIcon :isClosed="!isAccordionOpen" />
-            </button> -->
-            <!-- <div v-show="isAccordionOpen" class="accordion-content transition-transform transform origin-top duration-300"> -->
-            <!-- <div v-if="isAccordionOpen" class="accordion-content hover:bg-black transition duration-300"> -->
-              <!-- Opciones desplegables -->
               <!-- <ul class="text-left justify-start text-base">
                   <li v-for="(option, index) in productosPulseras" :key="index" class="h-10 flex items-center hover:bg-gray-100">
                     <span class="pl-6">{{ option }}</span>
@@ -58,112 +40,7 @@
                     </router-link>
                   -->
 
-              <!-- </ul>
-            </div>
-        </div> -->
-
-        <!--Acordeón de collares y gargantillas -->
-        <!-- <div class="collares_acordeon border-t border-solid border-gray-200"> -->
-          <!-- Clase del botón: class="accordion-title p-4 bg-gray-100 cursor-pointer border-b border-solid border-gray-200 w-60 flex justify-between items-center" -->
-            <!-- <button
-                class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
-                @click="toggleAccordion"
-                >
-                <span>Gargantillas y collares</span>
-                <ArrowIcon :isClosed="!isAccordionOpen" />
-            </button> -->
-            <!-- <div v-show="isAccordionOpen" class="accordion-content transition-transform transform origin-top duration-300"> -->
-            <!-- <div v-if="isAccordionOpen" class="accordion-content hover:bg-black transition duration-300"> -->
-              <!-- Opciones desplegables -->
-              <!-- <ul class="text-left justify-start text-base">
-                  <li v-for="(option, index) in productosCollares" :key="index" class="h-10 flex items-center hover:bg-gray-100">
-                    <span class="pl-6">{{ option }}</span>
-                  </li> -->
-
-                  <!-- Cuando tenga rutas lo cambio por esto: -->
-                  <!--
-                    <router-link
-                      v-for="(option, index) in accordionOptions"
-                      :key="index"
-                      :to="`/ruta/${index}`"
-                      class="h-10 flex items-center"
-                    >
-                      {{ option }}
-                    </router-link>
-                  -->
-
-              <!-- </ul>
-            </div>
-        </div> -->
-
-        <!--Acordeón de pendientes -->
-        <!-- <div class="collares_acordeon border-t border-solid border-gray-200"> -->
-          <!-- Clase del botón: class="accordion-title p-4 bg-gray-100 cursor-pointer border-b border-solid border-gray-200 w-60 flex justify-between items-center" -->
-            <!-- <button
-                class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
-                @click="toggleAccordion"
-                >
-                <span>Pendientes</span>
-                <ArrowIcon :isClosed="!isAccordionOpen" />
-            </button> -->
-            <!-- <div v-show="isAccordionOpen" class="accordion-content transition-transform transform origin-top duration-300"> -->
-            <!-- <div v-if="isAccordionOpen" class="accordion-content hover:bg-black transition duration-300"> -->
-              <!-- Opciones desplegables -->
-              <!-- <ul class="text-left justify-start text-base">
-                  <li v-for="(option, index) in productosPendientes" :key="index" class="h-10 flex items-center hover:bg-gray-100">
-                    <span class="pl-6">{{ option }}</span>
-                  </li> -->
-
-                  <!-- Cuando tenga rutas lo cambio por esto: -->
-                  <!--
-                    <router-link
-                      v-for="(option, index) in accordionOptions"
-                      :key="index"
-                      :to="`/ruta/${index}`"
-                      class="h-10 flex items-center"
-                    >
-                      {{ option }}
-                    </router-link>
-                  -->
-
-              <!-- </ul>
-            </div>
-        </div> -->
-
-        <!--Acordeón de anillos -->
-        <!-- <div class="collares_acordeon border-t border-solid border-gray-200"> -->
-          <!-- Clase del botón: class="accordion-title p-4 bg-gray-100 cursor-pointer border-b border-solid border-gray-200 w-60 flex justify-between items-center" -->
-            <!-- <button
-                class="accordion-title p-4 cursor-pointer w-60 flex justify-between items-center text-lg"
-                @click="toggleAccordion"
-                >
-                <span>Anillos</span>
-                <ArrowIcon :isClosed="!isAccordionOpen" />
-            </button>
-            <div v-show="isAccordionOpen" class="accordion-content transition-transform transform origin-top duration-300"> -->
-            <!-- <div v-if="isAccordionOpen" class="accordion-content hover:bg-black transition duration-300"> -->
-              <!-- Opciones desplegables -->
-              <!-- <ul class="text-left justify-start text-base">
-                  <li v-for="(option, index) in productosAnillos" :key="index" class="h-10 flex items-center hover:bg-gray-100">
-                    <span class="pl-6">{{ option }}</span>
-                  </li> -->
-
-                  <!-- Cuando tenga rutas lo cambio por esto: -->
-                  <!--
-                    <router-link
-                      v-for="(option, index) in accordionOptions"
-                      :key="index"
-                      :to="`/ruta/${index}`"
-                      class="h-10 flex items-center"
-                    >
-                      {{ option }}
-                    </router-link>
-                  -->
-
-              <!-- </ul>
-            </div>
-        </div>
-    </div> -->
+              <!-- </ul> -->
 </template>
 
 <script>
@@ -171,6 +48,9 @@
   import ArrowIcon from '@/assets/icons/ArrowIcon.vue';
 
   export default {
+    props: {
+      isVisible: Boolean,
+    },
     setup() {
       const acordeones = ref([
         {
@@ -242,3 +122,19 @@
 // };
 
 </script>
+
+<style>
+  .sidebar {
+    position: absolute;
+    top: 67px; /* Adjust to match the height of your header */
+    left: 0;
+    height: calc(100% - 67px); /* Subtract the header height*/
+    transition: transform 500ms ease-in-out;
+    transform: translateX(-100%);
+    /* z-index: 10; Adjust as needed */
+  }
+
+  .sidebar-visible {
+    transform: translateX(0);
+  }
+</style>

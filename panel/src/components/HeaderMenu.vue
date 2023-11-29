@@ -19,11 +19,13 @@
     import UserIcon from '@/assets/icons/UserIcon.vue';
 
     export default {
-        setup () {
-            const msg = "Hola"
+        setup (_, { emit }) {
+            const openSidebar = () => {
+                emit('toggle-sidebar');
+            };
 
             return {
-                msg
+                openSidebar
             }
         },
         components: {

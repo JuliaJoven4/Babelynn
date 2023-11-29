@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <HeaderMenu/>
+    <HeaderMenu @toggle-sidebar="isSidebarOpen = !isSidebarOpen" />
     <div class="main-content flex">
-      <SidebarOptions/>
-      <div class="main-content mt-10">
+      <SidebarOptions :isVisible="isSidebarOpen" />
+      <div :class="['main-content', { 'with-sidebar': isSidebarOpen }]" class="main-content mt-10">
         <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
         <HelloWorld msg="Welcome to Your Vue.js App"/>
       </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue'
 import SidebarOptions from '@/components/SidebarOptions.vue'
 import HeaderMenu from './components/HeaderMenu.vue';
@@ -22,6 +23,13 @@ export default {
     HelloWorld,
     SidebarOptions,
     HeaderMenu
+  },
+  setup() {
+    const isSidebarOpen = ref(false);
+
+    return {
+      isSidebarOpen,
+    };
   }
 }
 </script>
@@ -39,5 +47,9 @@ export default {
 
 .main-content {
   flex-grow: 1; /* Ocupa todo el espacio restante en el contenedor principal */
+}
+
+.with-sidebar {
+  padding-left: 250px; /* Adjust based on sidebar width */
 }
 </style>
