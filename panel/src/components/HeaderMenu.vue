@@ -9,7 +9,10 @@
         <div class="text-2xl cursor-pointer" @click="redirectToHome">
             <img src="../assets/logoBabelynnLetras.png" alt="Logo Babelynn" class="h-11"/>
         </div>
-        <div class="cursor-pointer p-4" @click="openProfile">
+        <!-- <div class="cursor-pointer p-4" @click="openProfile">
+            <UserIcon/>
+        </div> -->
+        <div class="cursor-pointer p-4" @click="navigateToLogin()">
             <UserIcon/>
         </div>
     </header>
@@ -17,6 +20,7 @@
 
 <script>
     import UserIcon from '@/assets/icons/UserIcon.vue';
+    import { useRouter } from 'vue-router';
 
     export default {
         setup (_, { emit }) {
@@ -24,8 +28,15 @@
                 emit('toggle-sidebar');
             };
 
+            const router = useRouter();
+
+            const navigateToLogin = () => {
+                router.push('/login'); // Navigate to /login route
+            };
+
             return {
-                openSidebar
+                openSidebar,
+                navigateToLogin
             }
         },
         components: {

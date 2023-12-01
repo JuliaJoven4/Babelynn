@@ -12,14 +12,16 @@
             <span>{{ acordeon.titulo }}</span>
             <ArrowIcon :isClosed="!acordeon.isOpen" />
           </button>
-          <div v-if="acordeon.isOpen" class="accordion-content transition duration-300">
-            <!-- Opciones desplegables -->
-            <ul class="text-left justify-start text-base">
-              <li v-for="(option, optionIndex) in acordeon.opciones" :key="optionIndex" class="h-10 flex items-center hover:bg-gray-100">
-                <span class="pl-6">{{ option }}</span>
-              </li>
-            </ul>
-          </div>
+          <transition name="accordion">
+            <div v-if="acordeon.isOpen" class="accordion-content bg-slate-50">
+              <!-- Opciones desplegables -->
+              <ul class="text-left justify-start text-base">
+                <li v-for="(option, optionIndex) in acordeon.opciones" :key="optionIndex" class="h-10 flex items-center hover:bg-gray-100">
+                  <span class="pl-6">{{ option }}</span>
+                </li>
+              </ul>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
@@ -131,10 +133,26 @@
     height: calc(100% - 67px); /* Subtract the header height*/
     transition: transform 500ms ease-in-out;
     transform: translateX(-100%);
-    /* z-index: 10; Adjust as needed */
   }
 
   .sidebar-visible {
     transform: translateX(0);
+  }
+
+  /* Initial state */
+  .accordion-enter-from, .accordion-leave-to {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  /* End state */
+  .accordion-enter-to, .accordion-leave-from {
+    max-height: 120px; /* Adjust this value based on the maximum height your content might have */
+    overflow: hidden;
+  }
+
+  /* Transition */
+  .accordion-enter-active, .accordion-leave-active {
+    transition: max-height 300ms ease-in-out;
   }
 </style>
