@@ -13,7 +13,7 @@
             <ArrowIcon :isClosed="!acordeon.isOpen" />
           </button>
           <transition name="accordion">
-            <div v-if="acordeon.isOpen" class="accordion-content bg-slate-50">
+            <div v-if="acordeon.isOpen" class="accordion-content bg-gray-50">
               <!-- Opciones desplegables -->
               <ul class="text-left justify-start text-base">
                 <li v-for="(option, optionIndex) in acordeon.opciones" :key="optionIndex" class="h-10 flex items-center hover:bg-gray-100">

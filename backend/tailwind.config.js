@@ -12,6 +12,8 @@ module.exports = {
         blue: '#00b1f4',
         ultraviolet: '#3b48fe',
         magenta: '#fb3e79',
+        babelynnBrown: '#b4644b',
+        babelynnBrownHover: '#885344',
       },
     },
   },
